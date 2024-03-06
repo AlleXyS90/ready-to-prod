@@ -14,7 +14,9 @@ import { UsersModule } from './users/users.module';
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host:
+        process.env.SQL_SERVER ??
+        'ready-to-prod-postgresql-server.postgres.database.azure.com',
       port: 5432,
       username: 'postgres',
       password: process.env.DB_PASSWORD,
