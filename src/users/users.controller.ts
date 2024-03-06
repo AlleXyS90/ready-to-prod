@@ -13,7 +13,7 @@ import {
 import { UsersService } from '../application/users.service';
 import { User } from '../domain/user.entity';
 
-@Controller('users')
+@Controller('v1/users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
