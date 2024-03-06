@@ -23,6 +23,7 @@ import { UsersModule } from './users/users.module';
       database: 'postgres',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
+      ssl: true
     }),
   ],
 })
