@@ -29,6 +29,7 @@ export class UsersController {
 
   @Get()
   findAll() {
+    console.log('get users - api version 1');
     return this.usersService.findAll();
   }
 
