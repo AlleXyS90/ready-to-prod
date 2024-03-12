@@ -1,32 +1,29 @@
 // External
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 // Internal
 import { UsersModule } from './users/users.module';
-import { AuthModule } from './application/auth/auth.module';
-import { ConfigModule } from '@nestjs/config';
-import { AzureADStrategy } from './application/auth/guards/azure-ad-strategy';
 
 @Module({
   imports: [
     UsersModule,
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5433,
+      host:
+        process.env.SQL_SERVER ??
+        'ready-to-prod-postgresql-server.postgres.database.azure.com',
+      port: 5432,
       username: 'postgres',
-      password: '1234',
+      password: process.env.DB_PASSWORD,
       database: 'postgres',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
-    AuthModule,
-    ConfigModule.forRoot({
-      envFilePath: '.env',
-      isGlobal: true,
-    }),
   ],
-  providers: [AzureADStrategy],
 })
 export class AppModule {}

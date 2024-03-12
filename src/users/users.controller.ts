@@ -18,7 +18,7 @@ import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('Users')
 @ApiBearerAuth()
-@UseGuards(AuthGuard())
+// @UseGuards(AuthGuard())
 @Controller('v1/users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -35,6 +35,7 @@ export class UsersController {
 
   @Get()
   findAll() {
+    console.log('api version 1');
     return this.usersService.findAll();
   }
 

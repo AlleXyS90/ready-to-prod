@@ -22,7 +22,5 @@ export class AzureADStrategy extends PassportStrategy(Strategy, 'AzureAD') {
     });
   }
 
-  validate(payload: any) {
-    return payload;
-  }
+  validate = (payload: any) => payload;
 }
