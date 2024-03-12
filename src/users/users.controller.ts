@@ -29,8 +29,11 @@ export class UsersController {
 
   @Get()
   findAll() {
-    console.log('get users - api version 1');
-    return this.usersService.findAll();
+    console.log('api version: 1');
+    return this.usersService.findAll().then((users) => {
+      const newUser = { id: 999, username: 'Admin', email: 'admin@endava.com' };
+      return users.concat(newUser);
+    });
   }
 
   @Put(':id')
